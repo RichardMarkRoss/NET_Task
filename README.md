@@ -1,6 +1,6 @@
-# UserGroup Solution — Tasks 1 & 2
+# UserGroup Solution — Tasks 1, 2 & 3
 
-This project implements **Task 1 (Database + EF Core Code-First)** and begins **Task 2 (Web API)** from the assignment.
+This project implements **Task 1 (Database + EF Core Code-First)**, **Task 2 (Web API)**, and begins **Task 3 (Web Interface)** from the assignment.
 
 ---
 
@@ -20,21 +20,36 @@ This project implements **Task 1 (Database + EF Core Code-First)** and begins **
      - API container (`api` service).
    - Dockerfile in `src/Api` builds and publishes the .NET API.
 
-3. **Task 2 — Web API (In Progress)**
+3. **Task 2 — Web API**
    - API project (`UserGroup.Api`) scaffolding created.
    - Connected to the same `AppDbContext`.
-   - Swagger configured for testing endpoints.
+   - Swagger configured for testing endpoints (**currently not showing endpoints — blocker**).
+
+4. **Task 3 — Web Interface**
+   - ASP.NET Core MVC/Minimal UI scaffolding started under `UserGroup.Api`.
+   - UI will consume the Web API for adding, editing, and deleting users.
+   - Visual design is minimal as per requirements.
+
+---
+
+## ⏳ Current Blocker
+- Swagger UI loads but **does not display the controller endpoints**.  
+  Likely causes:
+  - Controllers not properly registered in Program.cs.
+  - Missing `[ApiController]` / `[Route("api/[controller]")]` attributes.
+  - API project not building with referenced Infrastructure project.
 
 ---
 
 ## ⏳ What Still Needs To Be Done
+- Fix Swagger endpoint issue so controllers appear.
 - Finish API Controllers:
   - `UsersController` → Add, Remove, Update Users.
   - Endpoints for:
     - Total user count.
     - Number of users per group.
+- Complete Web Interface (Task 3) to consume API endpoints.
 - Unit and Integration Tests (Extra points).
-- Web Interface (Task 3).
 - Optional: Add `IsActive` field to `User` if time allows.
 
 ---
@@ -61,7 +76,7 @@ This project implements **Task 1 (Database + EF Core Code-First)** and begins **
    - SQL Server (on `localhost:1433`).
    - Web API (on `localhost:8080`).
 
-4. Test API via Swagger:
+4. Test API via Swagger (when fixed):
    - Open: [http://localhost:8080/swagger](http://localhost:8080/swagger)
 
 ---
@@ -92,4 +107,4 @@ docker compose build --no-cache api
   ```bash
   dotnet ef migrations remove -p src/Infrastructure -s src/Migrator
   ```
-- Next steps are to finish Task 2 (controllers) and Task 3 (UI).
+- Next steps are to **fix Swagger**, finish Task 2 controllers, and complete Task 3 web interface.
